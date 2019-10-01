@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 ## run once
 if [[ ! -f "/run_once.log" ]]; then
