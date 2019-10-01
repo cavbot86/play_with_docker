@@ -3,6 +3,8 @@ LABEL maintainer=cavbot@outlook.com
 
 VOLUME [ "/data" ]
 
+ENV HOME=/root \
+    EMAIL="cavbot@outlook.com"
 
 RUN apt-get update \
     && apt-get install curl --yes \
@@ -12,5 +14,8 @@ RUN apt-get update \
     && rm -rf /var/tmp/* \
     && rm -rf /var/lib/apt/lists/* 
 
+COPY start_app.sh /start_app.sh
+RUN chmod +x /start_app.sh
+
 EXPOSE 22/tcp
-CMD [ "bash" ]
+CMD [ "/start_app.sh" ]
