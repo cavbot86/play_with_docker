@@ -10,4 +10,4 @@ echo "##########################################################################
 
 
 echo "Starting application..."
-echo "do something..."
+echo "do something..." && bash
