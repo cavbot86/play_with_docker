@@ -14,11 +14,20 @@ if [[ ! -f "/run_once.log" ]]; then
     ssh-keygen -f /etc/ssh/ssh_host_ed25519_key -N '' -t ed25519
     
     echo init root dir ...
+    rm -rf /root/.ssh
     if [[ ! -d "/root/.ssh" ]]; then
         mkdir -p /root/.ssh
         touch /root/.ssh/authorized_keys
         chmod 600 /root/.ssh/authorized_keys
     fi
+
+    ssh-keygen -f ${HOME}/.ssh/id_rsa -N "" -t rsa -b 4096 -C "${EMAIL}"
+    echo "################################################################################################"
+    echo "id_rsa.pub -->: "
+    cat ${HOME}/.ssh/id_rsa.pub
+    echo ""
+    echo "################################################################################################"
+
 
     echo init /var/run/sshd ...
     if [[ ! -d "/var/run/sshd" ]]; then
