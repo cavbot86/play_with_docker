@@ -4,6 +4,7 @@ LABEL maintainer=cavbot@outlook.com
 VOLUME [ "/data" ]
 
 ENV HOME=/root \
+    PREPARE_SLEEP=120 \
     EMAIL="cavbot@outlook.com"
 
 RUN apt-get update \
@@ -15,7 +16,8 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/* 
 
 COPY start_app.sh /start_app.sh
-RUN chmod +x /start_app.sh
+COPY prepare_app.sh /prepare_app.sh
+RUN chmod +x /start_app.sh /prepare_app.sh
 
 EXPOSE 22/tcp
 CMD [ "/start_app.sh" ]
