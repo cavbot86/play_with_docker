@@ -31,6 +31,8 @@ COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY sshd.conf /etc/supervisor/conf.d/sshd.conf
 COPY entrypoint.sh /entrypoint.sh
 COPY init.sh /init.sh
+COPY hello_world.sh /init_scripts/hello_world.sh
+COPY hello_world.sh /startup_scripts/hello_world.sh
 
 RUN chmod +x /entrypoint.sh /init.sh 
 
