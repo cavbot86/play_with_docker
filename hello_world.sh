@@ -1,3 +1,3 @@
 #!/bin/bash
 set -e
-echo "Hello World! script: `dirname $0`"
+echo "Hello World! scripts path: `dirname $0`"
