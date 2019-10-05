@@ -77,6 +77,14 @@ if [[ ! -f "/run_once.log" ]]; then
         chown -R ${SUDOER_USER}:${SUDOER_USER} /home/${SUDOER_USER}
     fi
 
+    echo "start run init scripts..."
+    for var in $(ls /init_scripts/*.sh)
+    do
+        echo bash "$var"
+        bash "$var"
+    done
+    echo "run init scripts finished."
+
     echo "run once finished: `date`"
     echo "run once finished: `date`" > /run_once.log
 fi
