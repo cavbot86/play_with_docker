@@ -1,8 +1,6 @@
 FROM ubuntu:bionic
 LABEL maintainer=cavbot@outlook.com
 
-VOLUME [ "/data" ]
-
 ENV HOME=/root \
 	LANG=en_US.UTF-8 \
 	LANGUAGE=en_US.UTF-8 \
@@ -23,18 +21,18 @@ RUN apt-get update \
     && rm -rf /tmp/* \
     && rm -rf /var/tmp/* \
     && rm -rf /var/lib/apt/lists/* \
-    && echo "alias ll='ls -al'" >> /etc/profile 
-
-RUN sed -ri 's/^#?PermitRootLogin\s+.*/PermitRootLogin yes/' /etc/ssh/sshd_config
-RUN sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config
+    && echo "alias ll='ls -al'" >> /etc/profile \
+    && mkdir -p /init_scripts \
+    && mkdir -p /startup_scripts \
+    && sed -ri 's/^#?PermitRootLogin\s+.*/PermitRootLogin yes/' /etc/ssh/sshd_config \
+    && sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config
 
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY sshd.conf /etc/supervisor/conf.d/sshd.conf
-
 COPY entrypoint.sh /entrypoint.sh
 COPY init.sh /init.sh
 
 RUN chmod +x /entrypoint.sh /init.sh 
 
-EXPOSE 22
+EXPOSE 22/tcp
 ENTRYPOINT [ "/entrypoint.sh" ]
