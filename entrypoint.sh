@@ -12,7 +12,7 @@ done
 echo "run startup scripts finished."
 
 echo "network info: "
-echo `ifconfig | grep inet`
+ifconfig | grep inet
 
 echo start services ...
 echo "################################################################################################"
