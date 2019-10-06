@@ -11,6 +11,9 @@ do
 done
 echo "run startup scripts finished."
 
+echo "network info: "
+echo `ifconfig | grep inet`
+
 echo start services ...
 echo "################################################################################################"
 /usr/bin/supervisord
