@@ -6,7 +6,7 @@ if [ -n "$IP_192" ]; then
     PORT_1=$IP_192:$PORT_1
 fi
 
-rm -rf ${DOCKER_VOLUMES}/docker_temp_test
+# rm -rf ${DOCKER_VOLUMES}/docker_temp_test
 mkdir -p ${DOCKER_VOLUMES}/docker_temp_test
 
 sudo docker run -d \
