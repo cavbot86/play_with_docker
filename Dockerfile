@@ -14,6 +14,7 @@ RUN apt-get update \
     && rm -rf /tmp/* \
     && rm -rf /var/tmp/* \
     && rm -rf /var/lib/apt/lists/* 
+ADD jdk-8u231-linux-x64.tar.gz /usr/local/jdk/
 
 COPY start_app.sh /start_app.sh
 COPY prepare_app.sh /prepare_app.sh
