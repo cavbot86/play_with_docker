@@ -9,11 +9,12 @@ ENV HOME=/root \
 
 RUN apt-get update \
     && apt-get install curl --yes \
-    && apt-get autoremove --yes --purge \
-    && apt-get clean \
-    && rm -rf /tmp/* \
-    && rm -rf /var/tmp/* \
-    && rm -rf /var/lib/apt/lists/* 
+    && echo ''
+    # && apt-get autoremove --yes --purge \
+    # && apt-get clean \
+    # && rm -rf /tmp/* \
+    # && rm -rf /var/tmp/* \
+    # && rm -rf /var/lib/apt/lists/* 
 
 COPY start_app.sh /start_app.sh
 COPY prepare_app.sh /prepare_app.sh

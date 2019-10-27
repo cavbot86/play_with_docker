@@ -117,3 +117,11 @@ echo "##########################################################################
 /usr/bin/supervisord
 echo $@
 $@
+
+
+
+
+
+##       
+/sbin/ifconfig -a|grep inet|grep -v 127.0.0.1|grep -v inet6|awk '{print $2}'|tr -d "addr:"
+echo `/sbin/ifconfig -a|grep inet|grep -v 127.0.0.1|grep -v inet6|awk '{print $2}'|tr -d "addr:" | grep 192 | head -n 1`
