@@ -12,4 +12,5 @@ mkdir -p ${DOCKER_VOLUMES}/docker_temp_test
 sudo docker run -it \
     -p $PORT_1:22 \
     --name docker_temp_test \
+    --network work  \
     cavbot/temp_for_test bash
