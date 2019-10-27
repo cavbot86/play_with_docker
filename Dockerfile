@@ -7,13 +7,6 @@ ENV HOME=/root \
     PREPARE_SLEEP=5 \
     EMAIL="cavbot@outlook.com"
 
-RUN apt-get update \
-    && apt-get install curl --yes \
-    && apt-get autoremove --yes --purge \
-    && apt-get clean \
-    && rm -rf /tmp/* \
-    && rm -rf /var/tmp/* \
-    && rm -rf /var/lib/apt/lists/* 
 ADD jdk-8u231-linux-x64.tar.gz /usr/local/jdk/
 
 COPY start_app.sh /start_app.sh
