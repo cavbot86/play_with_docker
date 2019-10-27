@@ -4,7 +4,7 @@ LABEL maintainer=cavbot@outlook.com
 # VOLUME [ "/data" ]
 
 ENV HOME=/root \
-    PREPARE_SLEEP=120 \
+    PREPARE_SLEEP=5 \
     EMAIL="cavbot@outlook.com"
 
 RUN apt-get update \
