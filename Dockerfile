@@ -6,7 +6,7 @@ ENV HOME=/root \
     EMAIL="cavbot@outlook.com" 
 
 
-ADD jdk-8u231-linux-x64.tar.gz /usr/local/jdk/
+ADD jdk-11.0.5_linux-x64_bin.tar.gz /usr/local/jdk/
 
 WORKDIR /usr/local/jdk
 RUN ln -s "`ls`" current \
