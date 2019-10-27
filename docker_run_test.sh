@@ -9,7 +9,7 @@ fi
 # rm -rf ${DOCKER_VOLUMES}/docker_temp_test
 mkdir -p ${DOCKER_VOLUMES}/docker_temp_test
 
-sudo docker run -d \
+sudo docker run -it \
     -p $PORT_1:22 \
     --name docker_temp_test \
-    cavbot/temp_for_test
+    cavbot/temp_for_test bash
