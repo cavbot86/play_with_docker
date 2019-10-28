@@ -1,4 +1,4 @@
-FROM cavbot/ubuntu_base_flat:latest
+FROM cavbot/ubuntu-base-flat:latest
 LABEL maintainer=cavbot@outlook.com
 
 # VOLUME [ "/data" ]
