@@ -10,7 +10,7 @@ RUN mkdir -p /usr/local/jdk
 WORKDIR /usr/local/jdk
 RUN wget https://cdn.azul.com/zulu/bin/zulu8.42.0.21-ca-jdk8.0.232-linux_x64.tar.gz \
     && tar zxvf zulu8.42.0.21-ca-jdk8.0.232-linux_x64.tar.gz \
-    && rm -f zulu8.42.0.21-ca-jdk8.0.232-linux_x64.tar.gz
+    && rm -f zulu8.42.0.21-ca-jdk8.0.232-linux_x64.tar.gz \
     && ln -s "`ls`" current \
     && echo "export JAVA_HOME=/usr/local/jdk/current" >> /etc/profile \ 
     && echo 'export PATH=$JAVA_HOME/bin:$PATH' >> /etc/profile \
