@@ -8,7 +8,7 @@ ENV HOME=/root \
     EMAIL="cavbot@outlook.com"
 
 RUN apt-get update \
-    && apt-get install openjdk-8-jdk --yes \
+    && apt-get install curl --yes \
     && apt-get autoremove --yes --purge \
     && apt-get clean \
     && rm -rf /tmp/* \
