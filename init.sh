@@ -4,6 +4,8 @@ set -e
 ## run once
 if [[ ! -f "/run_once.log" ]]; then
     echo run once!
+
+    echo "alias ll='ls -al'" >> /root/.bashrc
     
     echo renew ssh keys ...
     rm -f /etc/ssh/ssh_host_rsa_key
