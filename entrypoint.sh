@@ -11,9 +11,6 @@ do
 done
 echo "run startup scripts finished."
 
-echo "network info: "
-ifconfig
-
 echo "Replace id_rsa if exists by -v /your/id_rsa/dir:/ssh_id_rsa"
 if [[ -f "${SSH_ID_RSA_DIR}/id_rsa" ]]; then
     cp -f ${SSH_ID_RSA_DIR}/id_rsa /root/.ssh/id_rsa

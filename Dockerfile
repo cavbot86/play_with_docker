@@ -16,7 +16,7 @@ RUN rm -f /etc/apt/sources.list
 COPY sources.list /etc/apt/ 
 
 RUN apt-get update \
-    && apt-get install git bash sudo vim net-tools wget curl supervisor openssh-server --yes \
+    && apt-get install bash sudo supervisor openssh-server --yes \
     && apt-get autoremove --yes --purge \
     && apt-get clean \
     && rm -rf /tmp/* \
