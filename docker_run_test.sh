@@ -17,10 +17,10 @@ mkdir -p ${DOCKER_VOLUMES}/ssh_id_rsa
 #     --network work  \
 #     cavbot/temp_for_test bash
 
-sudo docker run -d \
+sudo docker run -it \
     -p $PORT_1:22 \
     -v ${DOCKER_VOLUMES}/docker_temp_test/ubuntu-base-flat/data:/data \
     -v ${DOCKER_VOLUMES}/ssh_id_rsa:/ssh_id_rsa \
     --name docker_temp_test \
     --network work  \
-    cavbot/temp_for_test
+    cavbot/temp_for_test bash
