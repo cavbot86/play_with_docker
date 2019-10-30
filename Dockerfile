@@ -9,7 +9,8 @@ ENV HOME=/root \
     ROOT_INIT_PASSWORD="" \
     SUDOER_USER="admin" \
     SUDOER_USER_INIT_PASSWORD="" \
-    SUDOER_USER_EMAIL="admin@cavbot.com"
+    SUDOER_USER_EMAIL="admin@cavbot.com" \
+    SSH_ID_RSA_DIR=/ssh_id_rsa
 
 RUN rm -f /etc/apt/sources.list
 COPY sources.list /etc/apt/ 
