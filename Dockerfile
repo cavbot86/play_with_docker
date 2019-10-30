@@ -16,7 +16,7 @@ RUN rm -f /etc/apt/sources.list
 COPY sources.list /etc/apt/ 
 
 RUN apt-get update \
-    && apt-get install bash sudo supervisor openssh-server --fix-missing -y \
+    && apt-get install bash sudo lsof supervisor openssh-server --fix-missing -y \
     && apt-get autoremove -y --purge \
     && apt-get clean \
     && rm -rf /tmp/* \
