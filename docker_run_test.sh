@@ -6,7 +6,8 @@ if [ -n "$IP_192" ]; then
     PORT_1=$IP_192:$PORT_1
 fi
 
-
+# sudo rm -rf ${DOCKER_VOLUMES}/docker_temp_test/develop
+sudo mkdir -p ${DOCKER_VOLUMES}/docker_temp_test/develop
 sudo mkdir -p ${DOCKER_VOLUMES}/docker_temp_test/develop/data
 sudo mkdir -p ${DOCKER_VOLUMES}/ssh_id_rsa
 
