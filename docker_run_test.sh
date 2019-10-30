@@ -6,11 +6,10 @@ if [ -n "$IP_192" ]; then
     PORT_1=$IP_192:$PORT_1
 fi
 
-# rm -rf ${DOCKER_VOLUMES}/docker_temp_test/crontab
-mkdir -p ${DOCKER_VOLUMES}/docker_temp_test/crontab
-mkdir -p ${DOCKER_VOLUMES}/docker_temp_test/crontab/data
-mkdir -p ${DOCKER_VOLUMES}/docker_temp_test/crontab/ssh_id_rsa
-mkdir -p ${DOCKER_VOLUMES}/docker_temp_test/crontab/cron.d
+# rm -rf ${DOCKER_VOLUMES}/docker_temp_test
+mkdir -p ${DOCKER_VOLUMES}/docker_temp_test/ubuntu-base-flat/data
+mkdir -p ${DOCKER_VOLUMES}/ssh_id_rsa
+
 
 # sudo docker run -it \
 #     -p $PORT_1:22 \
@@ -20,8 +19,8 @@ mkdir -p ${DOCKER_VOLUMES}/docker_temp_test/crontab/cron.d
 
 sudo docker run -d \
     -p $PORT_1:22 \
-    -v ${DOCKER_VOLUMES}/docker_temp_test/crontab/data:/data \
-    -v ${DOCKER_VOLUMES}/docker_temp_test/crontab/ssh_id_rsa:/ssh_id_rsa \
+    -v ${DOCKER_VOLUMES}/docker_temp_test/ubuntu-base-flat/data:/data \
+    -v ${DOCKER_VOLUMES}/ssh_id_rsa:/ssh_id_rsa \
     --name docker_temp_test \
     --network work  \
     cavbot/temp_for_test
