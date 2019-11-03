@@ -12,7 +12,7 @@ ENV HOME=/root \
     SUDOER_USER_EMAIL="admin@cavbot.com" \
     SSH_ID_RSA_DIR=/ssh_id_rsa
 
-COPY sources.list /etc/apt/ 
+COPY rootfs/etc/apt/sources.list /etc/apt/sources.list 
 
 RUN apt-get update \
     && apt-get install bash sudo lsof supervisor openssh-server --fix-missing -y \
@@ -27,12 +27,11 @@ RUN apt-get update \
     && sed -ri 's/^#?PermitRootLogin\s+.*/PermitRootLogin yes/' /etc/ssh/sshd_config \
     && sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config
 
-COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-COPY sshd.conf /etc/supervisor/conf.d/sshd.conf
-COPY entrypoint.sh /entrypoint.sh
-COPY init.sh /init.sh
-COPY hello_world.sh /init_scripts/hello_world.sh
-COPY hello_world.sh /startup_scripts/hello_world.sh
+COPY rootfs/etc/supervisor/conf.d/ /etc/supervisor/conf.d/
+COPY rootfs/entrypoint.sh /entrypoint.sh
+COPY rootfs/init.sh /init.sh
+COPY rootfs/init_scripts/ /init_scripts/
+COPY rootfs/startup_scripts/ /startup_scripts/
 
 RUN chmod +x /entrypoint.sh /init.sh 
 
