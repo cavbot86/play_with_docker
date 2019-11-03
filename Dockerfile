@@ -15,8 +15,8 @@ RUN apt-get update \
     && rm -rf /var/tmp/* \
     && rm -rf /var/lib/apt/lists/* 
 
-COPY start_app.sh /start_app.sh
-COPY prepare_app.sh /prepare_app.sh
+COPY rootfs/start_app.sh /start_app.sh
+COPY rootfs/prepare_app.sh /prepare_app.sh
 RUN chmod +x /start_app.sh /prepare_app.sh
 
 EXPOSE 22/tcp
