@@ -12,7 +12,6 @@ ENV HOME=/root \
     SUDOER_USER_EMAIL="admin@cavbot.com" \
     SSH_ID_RSA_DIR=/ssh_id_rsa
 
-RUN rm -f /etc/apt/sources.list
 COPY sources.list /etc/apt/ 
 
 RUN apt-get update \
