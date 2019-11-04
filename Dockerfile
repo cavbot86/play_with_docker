@@ -2,8 +2,8 @@ FROM cavbot/ubuntu-base-flat:latest
 LABEL maintainer=cavbot@outlook.com
 
 ENV WORK_SPACE=/home/q \
-    APP_ROOT=${WORK_SPACE}/app \
-    JDK_ROOT=${WORK_SPACE}/jdk \
+    APP_ROOT=/home/q/app \
+    JDK_ROOT=/home/q/jdk \
     PREPARE_SLEEP=5 \
     EMAIL="cavbot@outlook.com" 
 
