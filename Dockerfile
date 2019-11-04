@@ -9,7 +9,8 @@ ENV LANG=en_US.UTF-8 \
     SUDOER_USER="admin" \
     SUDOER_USER_INIT_PASSWORD="" \
     SUDOER_USER_EMAIL="admin@cavbot.com" \
-    SSH_ID_RSA_DIR=/ssh_id_rsa
+    SSH_ID_RSA_DIR=/ssh_id_rsa \
+    ADMIN_RUN_DATA=/admin_run_data
 
 COPY rootfs/etc/apt/sources.list /etc/apt/sources.list
 
