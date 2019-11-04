@@ -26,7 +26,10 @@ RUN apt-get update \
     && mkdir -p /init_scripts \
     && mkdir -p /startup_scripts \
     && sed -ri 's/^#?PermitRootLogin\s+.*/PermitRootLogin yes/' /etc/ssh/sshd_config \
-    && sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config
+    && sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config \
+    && groupadd -g 1000 ${SUDOER_USER} \
+    && useradd ${SUDOER_USER} -u 1000 -s /bin/bash -g ${SUDOER_USER} \
+    && echo "${SUDOER_USER} ALL=(ALL) ALL " > /etc/sudoers.d/001_${SUDOER_USER}
 
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY sshd.conf /etc/supervisor/conf.d/sshd.conf
@@ -36,6 +39,8 @@ COPY hello_world.sh /init_scripts/hello_world.sh
 COPY hello_world.sh /startup_scripts/hello_world.sh
 
 RUN chmod +x /entrypoint.sh /init.sh 
+
+USER ${SUDOER_USER}
 
 EXPOSE 22/tcp
 ENTRYPOINT [ "/entrypoint.sh" ]

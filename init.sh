@@ -65,17 +65,17 @@ if [[ ! -f "/run_once.log" ]]; then
         echo ""
         echo ""
         echo ${SUDOER_USER_INIT_PASSWORD} > /root/init_sudoer_password
-        echo groupadd -g 1000 ${SUDOER_USER}
-        groupadd -g 1000 ${SUDOER_USER}
-        echo useradd ${SUDOER_USER} -u 1000 -s /bin/bash -g ${SUDOER_USER}
-        useradd ${SUDOER_USER} -u 1000 -s /bin/bash -g ${SUDOER_USER}
+        # echo groupadd -g 1000 ${SUDOER_USER}
+        # groupadd -g 1000 ${SUDOER_USER}
+        # echo useradd ${SUDOER_USER} -u 1000 -s /bin/bash -g ${SUDOER_USER}
+        # useradd ${SUDOER_USER} -u 1000 -s /bin/bash -g ${SUDOER_USER}
         echo "echo ${SUDOER_USER}:${SUDOER_USER_INIT_PASSWORD} | chpasswd"
         echo "${SUDOER_USER}:${SUDOER_USER_INIT_PASSWORD}" | chpasswd
         mkdir -p /home/${SUDOER_USER}
         mkdir -p /home/${SUDOER_USER}/.ssh
         touch /home/${SUDOER_USER}/.ssh/authorized_keys
         chmod 600 /home/${SUDOER_USER}/.ssh/authorized_keys
-        echo "${SUDOER_USER} ALL=(ALL) ALL " > /etc/sudoers.d/001_${SUDOER_USER}
+        # echo "${SUDOER_USER} ALL=(ALL) ALL " > /etc/sudoers.d/001_${SUDOER_USER}
         chown -R ${SUDOER_USER}:${SUDOER_USER} /home/${SUDOER_USER}
     fi
 
