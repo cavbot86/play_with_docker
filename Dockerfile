@@ -13,28 +13,13 @@ ENV LANG=en_US.UTF-8 \
 
 COPY rootfs/etc/apt/sources.list /etc/apt/sources.list
 
-RUN apt-get update \
-    && apt-get install bash sudo lsof supervisor openssh-server --fix-missing -y \
-    && apt-get autoremove -y --purge \
-    && apt-get clean \
-    && rm -rf /tmp/* \
-    && rm -rf /var/tmp/* \
-    && rm -rf /var/lib/apt/lists/* \
-    && echo "alias ll='ls -al'" >> /etc/profile \
-    && mkdir -p /init_scripts \
-    && mkdir -p /startup_scripts \
-    && sed -ri 's/^#?PermitRootLogin\s+.*/PermitRootLogin yes/' /etc/ssh/sshd_config \
-    && sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config \
-    && groupadd -g 1000 ${SUDOER_USER} \
-    && useradd ${SUDOER_USER} -u 1000 -s /bin/bash -g ${SUDOER_USER} \
-    && echo "${SUDOER_USER} ALL=(ALL) NOPASSWD: ALL " > /etc/sudoers.d/001_${SUDOER_USER}
-
 COPY rootfs/admin_install/ /admin_install/
 COPY rootfs/admin_startup/ /admin_startup/
 COPY rootfs/etc/supervisor/conf.d/ /etc/supervisor/conf.d/
 COPY rootfs/entrypoint.sh /entrypoint.sh
 
 RUN chmod +x /entrypoint.sh /init.sh /admin_install/* /admin_startup/* \
+    && /admin_install/init_common.sh \
     && /admin_install/init_root.sh \
     && /admin_install/init_admin.sh
 
