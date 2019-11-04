@@ -7,8 +7,8 @@ echo "start run startup scripts..."
 sudo chmod +x /startup_scripts/*.sh
 for var in $(ls /startup_scripts/*.sh)
 do
-    echo bash "$var"
-    bash "$var"
+    echo "$var"
+    $var
 done
 echo "run startup scripts finished."
 
