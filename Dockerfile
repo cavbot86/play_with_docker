@@ -39,7 +39,7 @@ RUN chmod +x /entrypoint.sh /init.sh
 
 ENV HOME=/home/${SUDOER_USER} 
 USER ${SUDOER_USER}
-WORKDIR ${HOME}
+WORKDIR /home/${SUDOER_USER} 
 
 EXPOSE 22/tcp
 ENTRYPOINT [ "/entrypoint.sh" ]
