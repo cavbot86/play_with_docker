@@ -78,8 +78,8 @@ if [[ ! -f "/run_once.log" ]]; then
     sudo chmod +x /init_scripts/*.sh
     for var in $(ls /init_scripts/*.sh)
     do
-        echo bash "$var"
-        bash "$var"
+        echo "$var"
+        $var
     done
     echo "run init scripts finished."
 
