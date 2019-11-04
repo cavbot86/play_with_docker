@@ -6,10 +6,13 @@ echo "run once start: `date`"
 echo renew ssh keys ...
 sudo rm -f /etc/ssh/ssh_host_rsa_key
 sudo ssh-keygen -f /etc/ssh/ssh_host_rsa_key -N '' -t rsa
+sudo chown -R ${SUDOER_USER}:${SUDOER_USER} /etc/ssh/ssh_host_rsa_key
 sudo rm -f /etc/ssh/ssh_host_ecdsa_key
 sudo ssh-keygen -f /etc/ssh/ssh_host_ecdsa_key -N '' -t ecdsa
+sudo chown -R ${SUDOER_USER}:${SUDOER_USER} /etc/ssh/ssh_host_ecdsa_key
 sudo rm -f /etc/ssh/ssh_host_ed25519_key
 sudo ssh-keygen -f /etc/ssh/ssh_host_ed25519_key -N '' -t ed25519
+sudo chown -R ${SUDOER_USER}:${SUDOER_USER} /etc/ssh/ssh_host_ed25519_key
 
 sudo ssh-keygen -f /root/.ssh/id_rsa -N "" -t rsa -b 4096 -C "${EMAIL}"
 
