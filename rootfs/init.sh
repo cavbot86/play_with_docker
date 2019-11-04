@@ -29,6 +29,9 @@ if [[ ! -f "/run_once.log" ]]; then
     fi
     echo ""
     echo ""
+
+    sudo mkdir /run_once_admin
+    sudo chown -R ${SUDOER_USER}:${SUDOER_USER} /run_once_admin
     
     echo "init root password ..."
     if [[ -z "${ROOT_INIT_PASSWORD}" ]]; then
@@ -36,10 +39,10 @@ if [[ ! -f "/run_once.log" ]]; then
     fi
     echo "################################################################################################"
     echo "#"
-    echo "# The root password is ${ROOT_INIT_PASSWORD} , you can find it in /root/init_root_password"
+    echo "# The root password is ${ROOT_INIT_PASSWORD} , you can find it in /run_once_admin/init_root_password"
     echo "#"
     echo "################################################################################################"
-    sudo echo ${ROOT_INIT_PASSWORD} > /root/init_root_password
+    echo ${ROOT_INIT_PASSWORD} > /run_once_admin/init_root_password
     echo "root:${ROOT_INIT_PASSWORD}" | sudo chpasswd
     echo ""
     echo ""
@@ -51,12 +54,12 @@ if [[ ! -f "/run_once.log" ]]; then
         fi
         echo "################################################################################################"
         echo "#"
-        echo "# The sudoer password is ${SUDOER_USER_INIT_PASSWORD} , you can find it in /root/init_sudoer_password"
+        echo "# The sudoer password is ${SUDOER_USER_INIT_PASSWORD} , you can find it in /run_once_admin/init_sudoer_password"
         echo "#"
         echo "################################################################################################"
         echo ""
         echo ""
-        sudo echo ${SUDOER_USER_INIT_PASSWORD} > /root/init_sudoer_password
+        echo ${SUDOER_USER_INIT_PASSWORD} > /run_once_admin/init_sudoer_password
         echo "echo ${SUDOER_USER}:${SUDOER_USER_INIT_PASSWORD} | chpasswd"
         echo "${SUDOER_USER}:${SUDOER_USER_INIT_PASSWORD}" | sudo chpasswd
         mkdir -p /home/${SUDOER_USER}
