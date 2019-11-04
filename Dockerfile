@@ -10,7 +10,8 @@ ENV WORK_SPACE=/home/q \
 RUN sudo mkdir -p ${WORK_SPACE} \
     && sudo mkdir -p ${APP_ROOT} \
     && sudo mkdir -p ${JDK_ROOT} \
-    && sudo chown -R ${SUDOER_USER}.${SUDOER_USER} ${WORK_SPACE}
+    && sudo chown -R ${SUDOER_USER}.${SUDOER_USER} ${WORK_SPACE} \
+    && echo "sudo chown -R ${SUDOER_USER}.${SUDOER_USER} ${WORK_SPACE}"
 
 WORKDIR ${JDK_ROOT}
 RUN wget https://cdn.azul.com/zulu/bin/zulu8.42.0.21-ca-jdk8.0.232-linux_x64.tar.gz \
