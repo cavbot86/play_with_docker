@@ -125,3 +125,20 @@ $@
 ##       
 /sbin/ifconfig -a|grep inet|grep -v 127.0.0.1|grep -v inet6|awk '{print $2}'|tr -d "addr:"
 echo `/sbin/ifconfig -a|grep inet|grep -v 127.0.0.1|grep -v inet6|awk '{print $2}'|tr -d "addr:" | grep 192 | head -n 1`
+
+
+
+echo "Replace id_rsa if exists by -v /your/id_rsa/dir:/ssh_id_rsa"
+if [[ -f "${SSH_ID_RSA_DIR}/id_rsa" ]]; then
+    cp -f ${SSH_ID_RSA_DIR}/id_rsa /root/.ssh/id_rsa
+fi
+
+echo "Replace id_rsa.pub if exists by -v /your/id_rsa/dir:/ssh_id_rsa"
+if [[ -f "${SSH_ID_RSA_DIR}/id_rsa.pub" ]]; then
+    cp -f ${SSH_ID_RSA_DIR}/id_rsa.pub /root/.ssh/id_rsa.pub
+fi
+
+echo "Replace id_rsa.pub if exists by -v /your/id_rsa/dir:/ssh_id_rsa"
+if [[ -f "${SSH_ID_RSA_DIR}/authorized_keys" ]]; then
+    cp -f ${SSH_ID_RSA_DIR}/authorized_keys /root/.ssh/authorized_keys
+fi
