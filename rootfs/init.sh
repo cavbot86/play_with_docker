@@ -5,8 +5,6 @@ set -e
 if [[ ! -f "/run_once.log" ]]; then
     echo run once!
 
-    sudo echo "alias ll='ls -al'" >> /root/.bashrc
-    
     echo renew ssh keys ...
     sudo rm -f /etc/ssh/ssh_host_rsa_key
     sudo ssh-keygen -f /etc/ssh/ssh_host_rsa_key -N '' -t rsa
