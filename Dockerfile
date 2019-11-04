@@ -11,7 +11,7 @@ ENV LANG=en_US.UTF-8 \
     SUDOER_USER_EMAIL="admin@cavbot.com" \
     SSH_ID_RSA_DIR=/ssh_id_rsa
 
-COPY rootfs/etc/apt/sources.list /etc/apt/sources.list 
+COPY rootfs/etc/apt/sources.list /etc/apt/sources.list
 
 RUN apt-get update \
     && apt-get install bash sudo lsof supervisor openssh-server --fix-missing -y \
@@ -29,13 +29,14 @@ RUN apt-get update \
     && useradd ${SUDOER_USER} -u 1000 -s /bin/bash -g ${SUDOER_USER} \
     && echo "${SUDOER_USER} ALL=(ALL) NOPASSWD: ALL " > /etc/sudoers.d/001_${SUDOER_USER}
 
+COPY rootfs/admin_install/ /admin_install/
+COPY rootfs/admin_startup/ /admin_startup/
 COPY rootfs/etc/supervisor/conf.d/ /etc/supervisor/conf.d/
 COPY rootfs/entrypoint.sh /entrypoint.sh
-COPY rootfs/init.sh /init.sh
-COPY rootfs/init_scripts/ /init_scripts/
-COPY rootfs/startup_scripts/ /startup_scripts/
 
-RUN chmod +x /entrypoint.sh /init.sh 
+RUN chmod +x /entrypoint.sh /init.sh /admin_install/* /admin_startup/* \
+    && /admin_install/init_root.sh \
+    && /admin_install/init_admin.sh
 
 ENV HOME=/home/${SUDOER_USER} 
 USER ${SUDOER_USER}
