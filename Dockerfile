@@ -20,7 +20,6 @@ COPY rootfs/entrypoint.sh /entrypoint.sh
 
 RUN chmod +x /entrypoint.sh /admin_install/* /admin_startup/* \
     && /admin_install/init_common.sh \
-    && /admin_install/init_root.sh \
     && /admin_install/init_admin.sh
 
 ENV HOME=/home/${SUDOER_USER} 
