@@ -62,13 +62,14 @@ if [[ ! -f "/run_once.log" ]]; then
         echo ${SUDOER_USER_INIT_PASSWORD} > /run_once_admin/init_sudoer_password
         echo "echo ${SUDOER_USER}:${SUDOER_USER_INIT_PASSWORD} | chpasswd"
         echo "${SUDOER_USER}:${SUDOER_USER_INIT_PASSWORD}" | sudo chpasswd
-        mkdir -p /home/${SUDOER_USER}
+        sudo mkdir -p /home/${SUDOER_USER}
+        sudo chown -R ${SUDOER_USER}:${SUDOER_USER} /home/${SUDOER_USER}
+        
         mkdir -p /home/${SUDOER_USER}/.ssh
         touch /home/${SUDOER_USER}/.ssh/authorized_keys
         chmod 600 /home/${SUDOER_USER}/.ssh/authorized_keys
         ssh-keygen -f /home/${SUDOER_USER}/.ssh/id_rsa -N "" -t rsa -b 4096 -C "${EMAIL}"
         chmod 600 /home/${SUDOER_USER}/.ssh/id_rsa
-        chown -R ${SUDOER_USER}:${SUDOER_USER} /home/${SUDOER_USER}
         chown -R ${SUDOER_USER}:${SUDOER_USER} /var/log/supervisor
         echo "alias ll='ls -al'" >> /home/${SUDOER_USER}/.bashrc
     fi
