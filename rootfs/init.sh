@@ -77,6 +77,17 @@ if [[ ! -f "/run_once.log" ]]; then
         chmod 600 /home/${SUDOER_USER}/.ssh/authorized_keys
         # echo "${SUDOER_USER} ALL=(ALL) ALL " > /etc/sudoers.d/001_${SUDOER_USER}
         chown -R ${SUDOER_USER}:${SUDOER_USER} /home/${SUDOER_USER}
+
+        ssh-keygen -f /home/${SUDOER_USER}/.ssh/id_rsa -N "" -t rsa -b 4096 -C "${EMAIL}"
+        echo "################################################################################################"
+        echo " /home/${SUDOER_USER}/.ssh/id_rsa.pub -->: "
+        cat /home/${SUDOER_USER}/.ssh/id_rsa.pub
+        chown ${SUDOER_USER}.${SUDOER_USER} /home/${SUDOER_USER}/.ssh/id_rsa /home/${SUDOER_USER}/.ssh/id_rsa.pub
+        chmod 600 /home/${SUDOER_USER}/.ssh/id_rsa
+        echo ""
+        echo "################################################################################################"
+
+
     fi
 
     echo "start run init scripts..."
