@@ -28,4 +28,5 @@ echo "alias ll='ls -al'" >> /home/${SUDOER_USER}/.bashrc
 
 chown -R ${SUDOER_USER}:${SUDOER_USER} /run_once_admin
 chown -R ${SUDOER_USER}:${SUDOER_USER} /home/${SUDOER_USER}
-chown -R ${SUDOER_USER}:${SUDOER_USER} /var/log/supervisor
+chown -R ${SUDOER_USER}:${SUDOER_USER} /var/log
+chown -R ${SUDOER_USER}:${SUDOER_USER} /run
