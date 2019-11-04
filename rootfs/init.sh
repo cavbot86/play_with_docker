@@ -70,8 +70,6 @@ if [[ ! -f "/run_once.log" ]]; then
         chown -R ${SUDOER_USER}:${SUDOER_USER} /home/${SUDOER_USER}
     fi
 
-    chown -R ${SUDOER_USER}:${SUDOER_USER} /var/log/supervisor
-
     echo "start run init scripts..."
     for var in $(ls /init_scripts/*.sh)
     do
