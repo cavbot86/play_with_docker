@@ -1,11 +1,12 @@
 #!/bin/bash
 set -e
 
-if [[ ! -f "/prepare_app.log" ]]; then
-    echo "Prepare App..."
+if [[ ! -f "${ADMIN_RUN_DATA}/prepare_app.log" ]]; then
+    echo "Prepare App... [`date`]"
     # sleep ${PREPARE_SLEEP}
     /prepare_app.sh
-    echo "Prepare Finished."
+    echo "ok" > ${ADMIN_RUN_DATA}/prepare_app.log
+    echo "Prepare Finished. [`date`]"
 fi
 
 echo "################################################################################################"
