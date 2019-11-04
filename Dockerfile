@@ -18,7 +18,7 @@ RUN wget https://cdn.azul.com/zulu/bin/zulu11.35.13-ca-jdk11.0.5-linux_x64.tar.g
     && tar zxvf zulu11.35.13-ca-jdk11.0.5-linux_x64.tar.gz \
     && rm -f zulu11.35.13-ca-jdk11.0.5-linux_x64.tar.gz \
     && ln -s "`ls`" current \
-    && echo 'export JAVA_HOME=${JDK_HOME}/current' >> /home/${SUDOER_USER}/.bashrc \
+    && echo "export JAVA_HOME=${JDK_HOME}/current" >> /home/${SUDOER_USER}/.bashrc \
     && echo 'export PATH=$JAVA_HOME/bin:$PATH' >> /home/${SUDOER_USER}/.bashrc
 
 WORKDIR ${APP_ROOT}
