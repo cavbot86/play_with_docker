@@ -28,7 +28,7 @@ RUN apt-get update \
     && sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config \
     && groupadd -g 1000 ${SUDOER_USER} \
     && useradd ${SUDOER_USER} -u 1000 -s /bin/bash -g ${SUDOER_USER} \
-    && echo "${SUDOER_USER} ALL=(ALL) ALL " > /etc/sudoers.d/001_${SUDOER_USER}
+    && echo "${SUDOER_USER} ALL=(ALL) NOPASSWD: ALL " > /etc/sudoers.d/001_${SUDOER_USER}
 
 COPY rootfs/etc/supervisor/conf.d/ /etc/supervisor/conf.d/
 COPY rootfs/entrypoint.sh /entrypoint.sh
