@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-if [[ ! -f "/prepare_app.log" ]]; then
+if [[ ! -f "${ADMIN_RUN_DATA}/prepare_app.log" ]]; then
     echo "Prepare App..."
     # sleep ${PREPARE_SLEEP}
     /prepare_app.sh

@@ -2,4 +2,5 @@
 set -e
 echo "do some prepare..."
 
-echo "ok" > /prepare_app.log
+
+echo "ok" > ${ADMIN_RUN_DATA}/prepare_app.log
