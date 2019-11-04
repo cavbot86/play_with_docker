@@ -18,7 +18,7 @@ COPY rootfs/admin_startup/ /admin_startup/
 COPY rootfs/etc/supervisor/conf.d/ /etc/supervisor/conf.d/
 COPY rootfs/entrypoint.sh /entrypoint.sh
 
-RUN chmod +x /entrypoint.sh /init.sh /admin_install/* /admin_startup/* \
+RUN chmod +x /entrypoint.sh /admin_install/* /admin_startup/* \
     && /admin_install/init_common.sh \
     && /admin_install/init_root.sh \
     && /admin_install/init_admin.sh
