@@ -24,7 +24,7 @@ RUN wget https://cdn.azul.com/zulu/bin/zulu8.42.0.21-ca-jdk8.0.232-linux_x64.tar
 WORKDIR ${APP_ROOT}
 COPY rootfs/start_app.sh /start_app.sh
 COPY rootfs/prepare_app.sh /prepare_app.sh
-RUN chmod +x /start_app.sh /prepare_app.sh
+RUN sudo chmod +x /start_app.sh /prepare_app.sh
 
 EXPOSE 22/tcp
 CMD [ "/start_app.sh" ]
