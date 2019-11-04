@@ -23,10 +23,10 @@ if [[ ! -f "/run_once.log" ]]; then
         chmod 600 /root/.ssh/authorized_keys
     fi
 
-    ssh-keygen -f ${HOME}/.ssh/id_rsa -N "" -t rsa -b 4096 -C "${EMAIL}"
+    ssh-keygen -f /root/.ssh/id_rsa -N "" -t rsa -b 4096 -C "${EMAIL}"
     echo "################################################################################################"
-    echo "id_rsa.pub -->: "
-    cat ${HOME}/.ssh/id_rsa.pub
+    echo " /root.ssh/id_rsa.pub -->: "
+    cat /root.ssh/id_rsa.pub
     echo ""
     echo "################################################################################################"
 
