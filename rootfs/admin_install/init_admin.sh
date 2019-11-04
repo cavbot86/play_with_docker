@@ -13,11 +13,8 @@ echo init /var/run/sshd ...
 if [[ ! -d "/var/run/sshd" ]]; then
     mkdir -p /var/run/sshd
 fi
-chown -R ${SUDOER_USER}:${SUDOER_USER} /var/run/sshd
-echo ""
-echo ""
 
-mkdir /run_once_admin
+mkdir /admin_run_log
 
 mkdir -p /home/${SUDOER_USER}
 mkdir -p /home/${SUDOER_USER}/.ssh
@@ -26,7 +23,8 @@ chmod 600 /home/${SUDOER_USER}/.ssh/authorized_keys
 
 echo "alias ll='ls -al'" >> /home/${SUDOER_USER}/.bashrc
 
-chown -R ${SUDOER_USER}:${SUDOER_USER} /run_once_admin
+chown -R ${SUDOER_USER}:${SUDOER_USER} /admin_run_log
 chown -R ${SUDOER_USER}:${SUDOER_USER} /home/${SUDOER_USER}
 chown -R ${SUDOER_USER}:${SUDOER_USER} /var/log
+chown -R ${SUDOER_USER}:${SUDOER_USER} /var/run
 chown -R ${SUDOER_USER}:${SUDOER_USER} /run
