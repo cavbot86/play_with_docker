@@ -5,29 +5,29 @@ set -e
 if [[ ! -f "/run_once.log" ]]; then
     echo run once!
 
-    echo "alias ll='ls -al'" >> /root/.bashrc
+    sudo echo "alias ll='ls -al'" >> /root/.bashrc
     
     echo renew ssh keys ...
-    rm -f /etc/ssh/ssh_host_rsa_key
-    ssh-keygen -f /etc/ssh/ssh_host_rsa_key -N '' -t rsa
-    rm -f /etc/ssh/ssh_host_ecdsa_key
-    ssh-keygen -f /etc/ssh/ssh_host_ecdsa_key -N '' -t ecdsa
-    rm -f /etc/ssh/ssh_host_ed25519_key
-    ssh-keygen -f /etc/ssh/ssh_host_ed25519_key -N '' -t ed25519
+    sudo rm -f /etc/ssh/ssh_host_rsa_key
+    sudo ssh-keygen -f /etc/ssh/ssh_host_rsa_key -N '' -t rsa
+    sudo rm -f /etc/ssh/ssh_host_ecdsa_key
+    sudo ssh-keygen -f /etc/ssh/ssh_host_ecdsa_key -N '' -t ecdsa
+    sudo rm -f /etc/ssh/ssh_host_ed25519_key
+    sudo ssh-keygen -f /etc/ssh/ssh_host_ed25519_key -N '' -t ed25519
     
     echo init root dir ...
-    rm -rf /root/.ssh
+    sudo rm -rf /root/.ssh
     if [[ ! -d "/root/.ssh" ]]; then
-        mkdir -p /root/.ssh
-        touch /root/.ssh/authorized_keys
-        chmod 600 /root/.ssh/authorized_keys
+        sudo mkdir -p /root/.ssh
+        sudo touch /root/.ssh/authorized_keys
+        sudo chmod 600 /root/.ssh/authorized_keys
     fi
 
-    ssh-keygen -f /root/.ssh/id_rsa -N "" -t rsa -b 4096 -C "${EMAIL}"
+    sudo ssh-keygen -f /root/.ssh/id_rsa -N "" -t rsa -b 4096 -C "${EMAIL}"
 
     echo init /var/run/sshd ...
     if [[ ! -d "/var/run/sshd" ]]; then
-        mkdir -p /var/run/sshd
+        sudo mkdir -p /var/run/sshd
     fi
     echo ""
     echo ""
@@ -41,8 +41,8 @@ if [[ ! -f "/run_once.log" ]]; then
     echo "# The root password is ${ROOT_INIT_PASSWORD} , you can find it in /root/init_root_password"
     echo "#"
     echo "################################################################################################"
-    echo ${ROOT_INIT_PASSWORD} > /root/init_root_password
-    echo "root:${ROOT_INIT_PASSWORD}" | chpasswd
+    sudo echo ${ROOT_INIT_PASSWORD} > /root/init_root_password
+    echo "root:${ROOT_INIT_PASSWORD}" | sudo chpasswd
     echo ""
     echo ""
     
@@ -58,10 +58,12 @@ if [[ ! -f "/run_once.log" ]]; then
         echo "################################################################################################"
         echo ""
         echo ""
-        echo ${SUDOER_USER_INIT_PASSWORD} > /root/init_sudoer_password
+        sudo echo ${SUDOER_USER_INIT_PASSWORD} > /root/init_sudoer_password
         echo "echo ${SUDOER_USER}:${SUDOER_USER_INIT_PASSWORD} | chpasswd"
-        echo "${SUDOER_USER}:${SUDOER_USER_INIT_PASSWORD}" | chpasswd
+        echo "${SUDOER_USER}:${SUDOER_USER_INIT_PASSWORD}" | sudo chpasswd
         mkdir -p /home/${SUDOER_USER}
+        echo "alias ll='ls -al'" >> /home/${SUDOER_USER}/.bashrc
+
         mkdir -p /home/${SUDOER_USER}/.ssh
         touch /home/${SUDOER_USER}/.ssh/authorized_keys
         chmod 600 /home/${SUDOER_USER}/.ssh/authorized_keys
@@ -72,6 +74,7 @@ if [[ ! -f "/run_once.log" ]]; then
     fi
 
     echo "start run init scripts..."
+    sudo chmod +x /init_scripts/*.sh
     for var in $(ls /init_scripts/*.sh)
     do
         echo bash "$var"

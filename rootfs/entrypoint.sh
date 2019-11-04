@@ -1,9 +1,10 @@
 #!/bin/bash
 set -e
 
-sudo /init.sh
+/init.sh
 
 echo "start run startup scripts..."
+sudo chmod +x /startup_scripts/*.sh
 for var in $(ls /startup_scripts/*.sh)
 do
     echo bash "$var"
