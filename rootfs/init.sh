@@ -24,12 +24,6 @@ if [[ ! -f "/run_once.log" ]]; then
     fi
 
     ssh-keygen -f /root/.ssh/id_rsa -N "" -t rsa -b 4096 -C "${EMAIL}"
-    echo "################################################################################################"
-    echo " /root.ssh/id_rsa.pub -->: "
-    cat /root.ssh/id_rsa.pub
-    echo ""
-    echo "################################################################################################"
-
 
     echo init /var/run/sshd ...
     if [[ ! -d "/var/run/sshd" ]]; then
@@ -79,13 +73,8 @@ if [[ ! -f "/run_once.log" ]]; then
         chown -R ${SUDOER_USER}:${SUDOER_USER} /home/${SUDOER_USER}
 
         ssh-keygen -f /home/${SUDOER_USER}/.ssh/id_rsa -N "" -t rsa -b 4096 -C "${EMAIL}"
-        echo "################################################################################################"
-        echo " /home/${SUDOER_USER}/.ssh/id_rsa.pub -->: "
-        cat /home/${SUDOER_USER}/.ssh/id_rsa.pub
         chown ${SUDOER_USER}.${SUDOER_USER} /home/${SUDOER_USER}/.ssh/id_rsa /home/${SUDOER_USER}/.ssh/id_rsa.pub
         chmod 600 /home/${SUDOER_USER}/.ssh/id_rsa
-        echo ""
-        echo "################################################################################################"
 
 
     fi
