@@ -63,8 +63,6 @@ if [[ ! -f "/run_once.log" ]]; then
         echo "echo ${SUDOER_USER}:${SUDOER_USER_INIT_PASSWORD} | chpasswd"
         echo "${SUDOER_USER}:${SUDOER_USER_INIT_PASSWORD}" | sudo chpasswd
         mkdir -p /home/${SUDOER_USER}
-        echo "alias ll='ls -al'" >> /home/${SUDOER_USER}/.bashrc
-
         mkdir -p /home/${SUDOER_USER}/.ssh
         touch /home/${SUDOER_USER}/.ssh/authorized_keys
         chmod 600 /home/${SUDOER_USER}/.ssh/authorized_keys
@@ -72,6 +70,7 @@ if [[ ! -f "/run_once.log" ]]; then
         chmod 600 /home/${SUDOER_USER}/.ssh/id_rsa
         chown -R ${SUDOER_USER}:${SUDOER_USER} /home/${SUDOER_USER}
         chown -R ${SUDOER_USER}:${SUDOER_USER} /var/log/supervisor
+        echo "alias ll='ls -al'" >> /home/${SUDOER_USER}/.bashrc
     fi
 
     echo "start run init scripts..."
