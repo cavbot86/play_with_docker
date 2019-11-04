@@ -64,13 +64,13 @@ if [[ ! -f "/run_once.log" ]]; then
         echo "${SUDOER_USER}:${SUDOER_USER_INIT_PASSWORD}" | sudo chpasswd
         sudo mkdir -p /home/${SUDOER_USER}
         sudo chown -R ${SUDOER_USER}:${SUDOER_USER} /home/${SUDOER_USER}
+        sudo chown -R ${SUDOER_USER}:${SUDOER_USER} /var/log/supervisor
         
         mkdir -p /home/${SUDOER_USER}/.ssh
         touch /home/${SUDOER_USER}/.ssh/authorized_keys
         chmod 600 /home/${SUDOER_USER}/.ssh/authorized_keys
         ssh-keygen -f /home/${SUDOER_USER}/.ssh/id_rsa -N "" -t rsa -b 4096 -C "${EMAIL}"
         chmod 600 /home/${SUDOER_USER}/.ssh/id_rsa
-        chown -R ${SUDOER_USER}:${SUDOER_USER} /var/log/supervisor
         echo "alias ll='ls -al'" >> /home/${SUDOER_USER}/.bashrc
     fi
 
