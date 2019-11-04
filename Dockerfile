@@ -1,8 +1,7 @@
 FROM ubuntu:bionic
 LABEL maintainer=cavbot@outlook.com
 
-ENV HOME=/root \
-	LANG=en_US.UTF-8 \
+ENV LANG=en_US.UTF-8 \
 	LANGUAGE=en_US.UTF-8 \
 	LC_ALL=C.UTF-8 \
     STARTUP_SCRIPT="/startup.sh" \
@@ -38,7 +37,9 @@ COPY rootfs/startup_scripts/ /startup_scripts/
 
 RUN chmod +x /entrypoint.sh /init.sh 
 
+ENV HOME=/home/${SUDOER_USER} 
 USER ${SUDOER_USER}
+WORKDIR ${HOME}
 
 EXPOSE 22/tcp
 ENTRYPOINT [ "/entrypoint.sh" ]
