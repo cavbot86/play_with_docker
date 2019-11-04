@@ -68,8 +68,9 @@ if [[ ! -f "/run_once.log" ]]; then
         ssh-keygen -f /home/${SUDOER_USER}/.ssh/id_rsa -N "" -t rsa -b 4096 -C "${EMAIL}"
         chmod 600 /home/${SUDOER_USER}/.ssh/id_rsa
         chown -R ${SUDOER_USER}:${SUDOER_USER} /home/${SUDOER_USER}
-        chown -R ${SUDOER_USER}:${SUDOER_USER} /var/
     fi
+
+    chown -R ${SUDOER_USER}:${SUDOER_USER} /var/log/supervisor
 
     echo "start run init scripts..."
     for var in $(ls /init_scripts/*.sh)
