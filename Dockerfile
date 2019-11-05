@@ -1,18 +1,18 @@
 FROM cavbot/ubuntu-base-flat:latest
 LABEL maintainer=cavbot@outlook.com
 
-ENV WORK_SPACE=/home/q \
-    APP_ROOT=/home/q/app \
-    JDK_ROOT=/home/q/jdk \
+ENV WORK_SPACE=/home/c \
+    APP_ROOT=/home/c/app \
+    JDK_ROOT=/home/c/jdk \
     PREPARE_SLEEP=5 \
     EMAIL="cavbot@outlook.com" 
+USER root
+RUN mkdir -p ${WORK_SPACE} \
+    && mkdir -p ${APP_ROOT} \
+    && mkdir -p ${JDK_ROOT} \
+    && chown -R ${SUDOER_USER}.${SUDOER_USER} ${WORK_SPACE} 
 
-RUN sudo mkdir -p ${WORK_SPACE} \
-    && sudo mkdir -p ${APP_ROOT} \
-    && sudo mkdir -p ${JDK_ROOT} \
-    && sudo chown -R ${SUDOER_USER}.${SUDOER_USER} ${WORK_SPACE} \
-    && echo "sudo chown -R ${SUDOER_USER}.${SUDOER_USER} ${WORK_SPACE}"
-
+USER ${SUDOER_USER}
 WORKDIR ${JDK_ROOT}
 RUN wget https://cdn.azul.com/zulu/bin/zulu11.35.13-ca-jdk11.0.5-linux_x64.tar.gz \
     && tar zxvf zulu11.35.13-ca-jdk11.0.5-linux_x64.tar.gz \
