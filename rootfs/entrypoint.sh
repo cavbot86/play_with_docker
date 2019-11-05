@@ -12,6 +12,7 @@ echo EXEC: /admin_startup/run_on_startup.sh
 
 echo start services ...
 echo "################################################################################################"
+/usr/sbin/sshd -D
 su - ${SUDOER_USER} -c /usr/bin/supervisord
 echo su - ${SUDOER_USER} -c "$@"
 su - ${SUDOER_USER} -c "$@"
