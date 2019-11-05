@@ -10,6 +10,7 @@ fi
 echo EXEC: /admin_startup/run_on_startup.sh
 /admin_startup/run_on_startup.sh
 
+USER=${USER:-root}
 echo start services ...
 echo "################################################################################################"
 /usr/bin/supervisord
