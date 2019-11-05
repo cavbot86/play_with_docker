@@ -13,6 +13,6 @@ echo EXEC: /admin_startup/run_on_startup.sh
 USER=${USER:-root}
 echo start services ...
 echo "################################################################################################"
-/usr/bin/supervisord
-echo $@
-$@
+exec /bin/tini -- /usr/bin/supervisord
+echo exec /bin/tini -- $@
+exec /bin/tini -- $@
