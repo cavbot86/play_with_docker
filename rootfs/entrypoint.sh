@@ -10,7 +10,7 @@ fi
 echo EXEC: /admin_startup/run_on_startup.sh
 /admin_startup/run_on_startup.sh
 
-USER=${USER:-root}
+USER=${SUDOER_USER}
 echo start services ...
 echo "################################################################################################"
 exec /bin/tini -- /usr/bin/supervisord
