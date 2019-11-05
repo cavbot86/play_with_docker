@@ -21,8 +21,6 @@ mkdir -p /home/${SUDOER_USER}/.ssh
 touch /home/${SUDOER_USER}/.ssh/authorized_keys
 chmod 600 /home/${SUDOER_USER}/.ssh/authorized_keys
 
-echo "alias ll='ls -al'" >> /home/${SUDOER_USER}/.bashrc
-
 chown -R ${SUDOER_USER}:${SUDOER_USER} ${ADMIN_RUN_DATA}
 chown -R ${SUDOER_USER}:${SUDOER_USER} /home/${SUDOER_USER}
 chown -R ${SUDOER_USER}:${SUDOER_USER} /var/log
