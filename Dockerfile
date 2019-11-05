@@ -10,7 +10,8 @@ ENV LANG=en_US.UTF-8 \
 	LC_ALL=C.UTF-8 \
     ROOT_INIT_PASSWORD="" \
     SUDOER_USER_INIT_PASSWORD="" \
-    SUDOER_USER_EMAIL="admin@cavbot.com"
+    SUDOER_USER_EMAIL="admin@cavbot.com" \
+    WORKSPACE=/home/c
 
 COPY rootfs/etc/apt/sources.list /etc/apt/sources.list
 
@@ -24,11 +25,11 @@ ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /bin/
 
 RUN chmod +x /entrypoint.sh /admin_install/* /admin_startup/* /bin/tini \
     && /admin_install/init_common.sh \
-    && /admin_install/init_admin.sh 
+    && /admin_install/init_admin.sh \
+    && mkdir ${WORKSPACE} \
+    && chown -R ${SUDOER_USER}:${SUDOER_USER} ${WORKSPACE}
 
-ENV HOME=/home/${SUDOER_USER} 
-USER ${SUDOER_USER}
-WORKDIR /home/${SUDOER_USER} 
+WORKDIR ${WORKSPACE}
 
 EXPOSE 22/tcp
-ENTRYPOINT [ "/bin/tini", "--", "/entrypoint.sh" ]
+ENTRYPOINT [ "/entrypoint.sh" ]
