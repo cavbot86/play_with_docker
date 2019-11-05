@@ -8,6 +8,7 @@ ENV HOME=/root \
     EMAIL="cavbot@outlook.com"
 
 COPY rootfs/home/c/ /home/c/
+RUN command
 
 EXPOSE 22/tcp
 CMD [ "/start_app.sh" ]

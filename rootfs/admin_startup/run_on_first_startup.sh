@@ -44,4 +44,6 @@ echo ""
 ssh-keygen -f /home/${SUDOER_USER}/.ssh/id_rsa -N "" -t rsa -b 4096 -C "${EMAIL}"
 chmod 600 /home/${SUDOER_USER}/.ssh/id_rsa
 
+echo "alias ll='ls -al'" >> /home/${SUDOER_USER}/.bashrc
+
 echo "run once finished: `date`"
