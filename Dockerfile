@@ -19,13 +19,16 @@ COPY rootfs/admin_startup/ /admin_startup/
 COPY rootfs/etc/supervisor/conf.d/ /etc/supervisor/conf.d/
 COPY rootfs/entrypoint.sh /entrypoint.sh
 
-RUN chmod +x /entrypoint.sh /admin_install/* /admin_startup/* \
+ARG TINI_VERSION=v0.18.0
+ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /bin/tini
+
+RUN chmod +x /entrypoint.sh /admin_install/* /admin_startup/* /bin/tini \
     && /admin_install/init_common.sh \
-    && /admin_install/init_admin.sh
+    && /admin_install/init_admin.sh 
 
 ENV HOME=/home/${SUDOER_USER} 
 USER ${SUDOER_USER}
 WORKDIR /home/${SUDOER_USER} 
 
 EXPOSE 22/tcp
-ENTRYPOINT [ "/entrypoint.sh" ]
+ENTRYPOINT [ "/bin/tini", "--", "/entrypoint.sh" ]
