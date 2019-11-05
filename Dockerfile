@@ -31,4 +31,4 @@ RUN chmod +x /entrypoint.sh /admin_install/* /admin_startup/* /bin/tini \
 WORKDIR ${WORKSPACE}
 
 EXPOSE 22/tcp
-ENTRYPOINT [ "/entrypoint.sh" ]
+ENTRYPOINT [ "/bin/tini", "--", "/entrypoint.sh" ]
