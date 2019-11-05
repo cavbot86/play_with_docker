@@ -26,6 +26,6 @@ RUN chmod +x /entrypoint.sh /admin_install/* /admin_startup/* \
     && chown -R ${SUDOER_USER}:${SUDOER_USER} ${WORKSPACE}
 
 WORKDIR ${WORKSPACE}
-
+ENV CMD_USER=${SUDOER_USER}
 EXPOSE 22/tcp
 ENTRYPOINT [ "/entrypoint.sh" ]

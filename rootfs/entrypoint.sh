@@ -15,5 +15,5 @@ echo "##########################################################################
 # exec /bin/tini -- /usr/sbin/sshd -D
 /usr/sbin/sshd -D &
 su ${SUDOER_USER} -c /usr/bin/supervisord
-echo su ${SUDOER_USER} -c "$@"
-su ${SUDOER_USER} -c "$@"
+echo su ${CMD_USER} -c "$@"
+su ${CMD_USER} -c "$@"
