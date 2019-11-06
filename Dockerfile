@@ -28,8 +28,8 @@ ENV CMD_USER=${SUDOER_USER} \
     HOME=/home/${SUDOER_USER} \
     HOME_INIT=${ADMIN_RUN}/home/${SUDOER_USER}
 RUN mkdir -p ${HOME_INIT} \
-    scp ${HOME} ${HOME_INIT} \
-    chown -R ${SUDOER_USER}.${SUDOER_USER} ${HOME_INIT}
+    && scp ${HOME} ${HOME_INIT} \
+    && chown -R ${SUDOER_USER}.${SUDOER_USER} ${HOME_INIT}
 
 WORKDIR ${WORKSPACE}
 EXPOSE 22/tcp
