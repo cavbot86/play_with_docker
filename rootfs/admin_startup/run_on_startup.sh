@@ -18,3 +18,5 @@ if [[ -f "${SSH_ID_RSA_DIR}/authorized_keys" ]]; then
     chmod 600 /home/${SUDOER_USER}/.ssh/authorized_keys
 fi
 
+mkdir -p ${WORKSPACE}
+chown -R ${SUDOER_USER}.${SUDOER_USER} ${WORKSPACE}
