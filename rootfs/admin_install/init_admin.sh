@@ -8,20 +8,27 @@ if [[ ! -d "/root/.ssh" ]]; then
     touch /root/.ssh/authorized_keys
     chmod 600 /root/.ssh/authorized_keys
 fi
+echo "alias ll='ls -al'" >> /root/.bashrc
 
 echo init /var/run/sshd ...
 if [[ ! -d "/var/run/sshd" ]]; then
     mkdir -p /var/run/sshd
 fi
 
-mkdir ${ADMIN_RUN_DATA}
+mkdir ${ADMIN_RUN}
+
+# init admin user
+groupadd -g 1000 ${SUDOER_USER} 
+useradd ${SUDOER_USER} -u 1000 -s /bin/bash -g ${SUDOER_USER} 
+echo "${SUDOER_USER} ALL=(ALL) ALL " > /etc/sudoers.d/001_${SUDOER_USER}
 
 mkdir -p /home/${SUDOER_USER}
 mkdir -p /home/${SUDOER_USER}/.ssh
 touch /home/${SUDOER_USER}/.ssh/authorized_keys
 chmod 600 /home/${SUDOER_USER}/.ssh/authorized_keys
+echo "alias ll='ls -al'" >> /home/${SUDOER_USER}/.bashrc
 
-chown -R ${SUDOER_USER}:${SUDOER_USER} ${ADMIN_RUN_DATA}
+chown -R ${SUDOER_USER}:${SUDOER_USER} ${ADMIN_RUN}
 chown -R ${SUDOER_USER}:${SUDOER_USER} /home/${SUDOER_USER}
 chown -R ${SUDOER_USER}:${SUDOER_USER} /var/log
 chown -R ${SUDOER_USER}:${SUDOER_USER} /var/run
