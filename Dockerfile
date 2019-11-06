@@ -3,7 +3,9 @@ LABEL maintainer=cavbot@outlook.com
 
 # VOLUME [ "/data" ]
 
-ENV PREPARE_SLEEP=5 \
+ENV WORKSPACE=/home/c \
+    APP_ROOT=/home/c/app \
+    PREPARE_SLEEP=5 \
     EMAIL="cavbot@outlook.com"
 
 COPY rootfs/home/c/ /home/c/
@@ -21,4 +23,4 @@ RUN mkdir -p ${HOME_INIT} \
     && chown -R ${SUDOER_USER}.${SUDOER_USER} ${HOME_INIT}
 
 EXPOSE 22/tcp
-CMD [ "/home/c/startup/start_app.sh" ]
+CMD [ "/start_app.sh" ]

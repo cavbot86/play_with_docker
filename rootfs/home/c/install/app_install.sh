@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 apt-get update
-apt-get install git -y
+apt-get install curl -y
 apt-get autoremove -y --purge
 apt-get clean
 rm -rf /tmp/*

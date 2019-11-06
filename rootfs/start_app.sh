@@ -16,4 +16,4 @@ echo "#                                                                         
 echo "################################################################################################"
 
 echo "Starting application..."
-echo "do something..." && bash
+${WORKSPACE}/app/app_run.sh
