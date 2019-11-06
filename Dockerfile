@@ -9,12 +9,9 @@ ENV PREPARE_SLEEP=5 \
 COPY rootfs/home/c/ /home/c/
 COPY rootfs/start_app.sh /start_app.sh
 COPY rootfs/prepare_app.sh /prepare_app.sh
+RUN sudo chmod +x /start_app.sh /prepare_app.sh /home/c/install/*.sh /home/c/app/*.sh 
 
 WORKDIR ${WORKSPACE}
-COPY rootfs/start_app.sh /start_app.sh
-COPY rootfs/prepare_app.sh /prepare_app.sh
-RUN sudo chmod +x /start_app.sh /prepare_app.sh
-
 ENV CMD_USER=${SUDOER_USER} \
     HOME=/home/${SUDOER_USER} \
     HOME_INIT=${ADMIN_RUN}/home/${SUDOER_USER}
