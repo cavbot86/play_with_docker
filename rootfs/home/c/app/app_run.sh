@@ -1,4 +1,5 @@
 #!/bin/bash
 set -e
-java -version > ${WORDSPACE}/java.log
-tail -f ${WORDSPACE}/java.log
+mkdir -p ${WORDSPACE}/log
+java -version > ${WORDSPACE}/log/java.log
+tail -f ${WORDSPACE}/log/java.log
