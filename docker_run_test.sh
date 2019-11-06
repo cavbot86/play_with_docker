@@ -17,7 +17,7 @@ sudo docker run -it \
     -v ${DOCKER_VOLUMES}/ssh_id_rsa:/ssh_id_rsa \
     --name docker_temp_test \
     --network work  \
-    cavbot/temp_for_test /start_app.sh & bash
+    cavbot/temp_for_test "/start_app.sh & bash"
 
 # sudo docker run -d \
 #     -p $PORT_1:22 \
