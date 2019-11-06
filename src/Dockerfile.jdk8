@@ -9,11 +9,13 @@ ENV WORKSPACE=/home/c \
     PREPARE_SLEEP=5 \
     EMAIL="cavbot@outlook.com"
 
-COPY rootfs/home/c/ /home/c/
+COPY rootfs/home/c/install/ /home/c/install/
+RUN chmod +x /home/c/install/*.sh \
+    && /home/c/install/app_install.sh
+
 COPY rootfs/start_app.sh /start_app.sh
 COPY rootfs/prepare_app.sh /prepare_app.sh
-RUN sudo chmod +x /start_app.sh /prepare_app.sh /home/c/install/*.sh /home/c/app/*.sh \
-    && /home/c/install/app_install.sh
+COPY rootfs/home/c/app/ /home/c/app/
 
 WORKDIR ${WORKSPACE}
 ENV CMD_USER=${SUDOER_USER} \
@@ -21,7 +23,8 @@ ENV CMD_USER=${SUDOER_USER} \
     HOME_INIT=${ADMIN_RUN}/home/${SUDOER_USER}
 RUN mkdir -p ${HOME_INIT} \
     && scp -r ${HOME}/ ${ADMIN_RUN}/home/ \
+    && chmod +x /start_app.sh /prepare_app.sh /home/c/app/*.sh \
     && chown -R ${SUDOER_USER}.${SUDOER_USER} ${HOME_INIT}
 
 EXPOSE 22/tcp
-CMD [ "/home/c/startup/start_app.sh" ]
+CMD [ "/start_app.sh" ]
