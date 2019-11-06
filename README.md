@@ -1,10 +1,5 @@
-# ubuntu-base-flat
+# supervisord
 
-## Ubuntu base flat
+## cavbot/supervisord
 
-include: bash sudo lsof supervisor openssh-server tzdata
-
-LANG=en_US.UTF-8
-LANGUAGE=en_US.UTF-8
-LC_ALL=C.UTF-8
-TZ=Asia/Shanghai
+add: supervisor
