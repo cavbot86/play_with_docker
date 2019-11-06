@@ -29,7 +29,7 @@ ENV CMD_USER=${SUDOER_USER} \
     HOME_INIT=${ADMIN_RUN}/home/${SUDOER_USER}
 RUN mkdir -p ${HOME_INIT} \
     && scp -r ${HOME}/ ${ADMIN_RUN}/home/ \
-    && chown -R ${SUDOER_USER}.${SUDOER_USER} ${HOME_INIT}
+    && /admin_install/init_permission.sh
 
 WORKDIR ${WORKSPACE}
 EXPOSE 22/tcp
