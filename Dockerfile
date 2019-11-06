@@ -24,4 +24,4 @@ RUN mkdir -p ${HOME_INIT} \
     && chown -R ${SUDOER_USER}.${SUDOER_USER} ${HOME_INIT}
 
 EXPOSE 22/tcp
-CMD [ "/home/c/startup/start_app.sh" ]
+CMD [ "/start_app.sh" ]
