@@ -15,10 +15,3 @@ echo "##########################################################################
 # exec /bin/tini -- /usr/sbin/sshd -D
 /usr/sbin/sshd -D &
 su ${SUDOER_USER} -c /usr/bin/supervisord
-if [[ ${CMD_USER} == "root" ]]; then
-    echo "$@"
-    $@
-else
-    echo su ${CMD_USER} -c "$@"
-    su ${CMD_USER} -c "$@"
-fi
