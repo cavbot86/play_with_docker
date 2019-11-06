@@ -3,7 +3,7 @@ set -e
 
 ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 apt-get update 
-apt-get install bash sudo lsof supervisor openssh-server tzdata --fix-missing --yes
+apt-get install bash sudo lsof openssh-server tzdata --fix-missing --yes
 apt-get autoremove --yes --purge 
 apt-get clean 
 rm -rf /tmp/* 
