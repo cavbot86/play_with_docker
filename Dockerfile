@@ -4,6 +4,7 @@ LABEL maintainer=cavbot@outlook.com
 ENV LANG=en_US.UTF-8 \
 	LANGUAGE=en_US.UTF-8 \
 	LC_ALL=C.UTF-8 \
+    TZ=Asia/Shanghai \
     ROOT_INIT_PASSWORD="" \
     SUDOER_USER="admin" \
     SUDOER_USER_INIT_PASSWORD="" \
