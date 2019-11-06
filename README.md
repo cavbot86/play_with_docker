@@ -2,7 +2,7 @@
 
 ## Ubuntu base flat
 
-include: bash sudo lsof supervisor openssh-server tzdata
+include: bash sudo lsof openssh-server tzdata
 
 LANG=en_US.UTF-8
 LANGUAGE=en_US.UTF-8
