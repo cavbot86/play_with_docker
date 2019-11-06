@@ -3,15 +3,14 @@ LABEL maintainer=cavbot@outlook.com
 
 # VOLUME [ "/data" ]
 
-ENV HOME=/root \
-    PREPARE_SLEEP=5 \
+ENV PREPARE_SLEEP=5 \
     EMAIL="cavbot@outlook.com"
 
 COPY rootfs/home/c/ /home/c/
 COPY rootfs/start_app.sh /start_app.sh
 COPY rootfs/prepare_app.sh /prepare_app.sh
 
-WORKDIR ${APP_ROOT}
+WORKDIR ${WORKSPACE}
 COPY rootfs/start_app.sh /start_app.sh
 COPY rootfs/prepare_app.sh /prepare_app.sh
 RUN sudo chmod +x /start_app.sh /prepare_app.sh
