@@ -14,14 +14,14 @@ if [[ ! -d "/var/run/sshd" ]]; then
     mkdir -p /var/run/sshd
 fi
 
-mkdir ${ADMIN_RUN_DATA}
+mkdir ${ADMIN_RUN}
 
 mkdir -p /home/${SUDOER_USER}
 mkdir -p /home/${SUDOER_USER}/.ssh
 touch /home/${SUDOER_USER}/.ssh/authorized_keys
 chmod 600 /home/${SUDOER_USER}/.ssh/authorized_keys
 
-chown -R ${SUDOER_USER}:${SUDOER_USER} ${ADMIN_RUN_DATA}
+chown -R ${SUDOER_USER}:${SUDOER_USER} ${ADMIN_RUN}
 chown -R ${SUDOER_USER}:${SUDOER_USER} /home/${SUDOER_USER}
 chown -R ${SUDOER_USER}:${SUDOER_USER} /var/log
 chown -R ${SUDOER_USER}:${SUDOER_USER} /var/run

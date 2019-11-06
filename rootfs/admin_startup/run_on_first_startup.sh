@@ -19,10 +19,10 @@ if [[ -z "${ROOT_INIT_PASSWORD}" ]]; then
 fi
 echo "################################################################################################"
 echo "#"
-echo "# The root password is ${ROOT_INIT_PASSWORD} , you can find it in ${ADMIN_RUN_DATA}/init_root_password"
+echo "# The root password is ${ROOT_INIT_PASSWORD} , you can find it in ${ADMIN_RUN}/init_root_password"
 echo "#"
 echo "################################################################################################"
-echo ${ROOT_INIT_PASSWORD} > ${ADMIN_RUN_DATA}/init_root_password
+echo ${ROOT_INIT_PASSWORD} > ${ADMIN_RUN}/init_root_password
 echo "root:${ROOT_INIT_PASSWORD}" | chpasswd
 echo ""
 echo ""
@@ -33,10 +33,10 @@ if [[ -z "${SUDOER_USER_INIT_PASSWORD}" ]]; then
 fi
 echo "################################################################################################"
 echo "#"
-echo "# The sudoer password is ${SUDOER_USER_INIT_PASSWORD} , you can find it in ${ADMIN_RUN_DATA}/init_sudoer_password"
+echo "# The sudoer password is ${SUDOER_USER_INIT_PASSWORD} , you can find it in ${ADMIN_RUN}/init_sudoer_password"
 echo "#"
 echo "################################################################################################"
-echo ${SUDOER_USER_INIT_PASSWORD} > ${ADMIN_RUN_DATA}/init_sudoer_password
+echo ${SUDOER_USER_INIT_PASSWORD} > ${ADMIN_RUN}/init_sudoer_password
 echo "${SUDOER_USER}:${SUDOER_USER_INIT_PASSWORD}" | chpasswd
 echo ""
 echo ""

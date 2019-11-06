@@ -9,7 +9,7 @@ ENV LANG=en_US.UTF-8 \
     SUDOER_USER_INIT_PASSWORD="" \
     SUDOER_USER_EMAIL="admin@cavbot.com" \
     SSH_ID_RSA_DIR=/ssh_id_rsa \
-    ADMIN_RUN_DATA=/admin_run_data \
+    ADMIN_RUN=/admin_run \
     WORKSPACE=/home/c
 
 COPY rootfs/etc/apt/sources.list /etc/apt/sources.list
@@ -23,9 +23,14 @@ RUN chmod +x /entrypoint.sh /admin_install/* /admin_startup/* \
     && /admin_install/init_common.sh \
     && /admin_install/init_admin.sh \
     && mkdir ${WORKSPACE} \
-    && chown -R ${SUDOER_USER}:${SUDOER_USER} ${WORKSPACE}
+    && chown -R ${SUDOER_USER}:${SUDOER_USER} ${WORKSPACE} 
+ENV CMD_USER=${SUDOER_USER} \
+    HOME=/home/${SUDOER_USER} \
+    HOME_INIT=${ADMIN_RUN}/home/${SUDOER_USER}
+RUN mkdir -p ${HOME_INIT} \
+    scp ${HOME} ${HOME_INIT} \
+    chown -R ${SUDOER_USER}.${SUDOER_USER} ${HOME_INIT}
 
 WORKDIR ${WORKSPACE}
-ENV CMD_USER=${SUDOER_USER}
 EXPOSE 22/tcp
 ENTRYPOINT [ "/entrypoint.sh" ]
