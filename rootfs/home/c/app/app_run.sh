@@ -1,5 +1,6 @@
 #!/bin/bash
 set -e
-mkdir -p ${WORDSPACE}/log
-java -version > ${WORDSPACE}/log/test.log
-tail -f ${WORDSPACE}/log/test.log
+env
+mkdir -p ${WORKSPACE}/log
+java -version > ${WORKSPACE}/log/test.log
+tail -f ${WORKSPACE}/log/test.log
