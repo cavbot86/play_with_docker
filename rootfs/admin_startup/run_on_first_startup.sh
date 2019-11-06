@@ -48,6 +48,7 @@ chmod 600 /home/${SUDOER_USER}/.ssh/authorized_keys
 ssh-keygen -f /home/${SUDOER_USER}/.ssh/id_rsa -N "" -t rsa -b 4096 -C "${EMAIL}"
 chmod 600 /home/${SUDOER_USER}/.ssh/id_rsa
 echo "alias ll='ls -al'" >> /home/${SUDOER_USER}/.bashrc
+scp -r ${HOME_INIT} /home
 chown -R ${SUDOER_USER}.${SUDOER_USER} /home/${SUDOER_USER}
 
 echo "run once finished: `date`"
