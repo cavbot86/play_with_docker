@@ -17,7 +17,6 @@ COPY rootfs/etc/apt/sources.list /etc/apt/sources.list
 
 COPY rootfs/admin_install/ /admin_install/
 COPY rootfs/admin_startup/ /admin_startup/
-COPY rootfs/etc/supervisor/conf.d/ /etc/supervisor/conf.d/
 COPY rootfs/entrypoint.sh /entrypoint.sh
 
 RUN chmod +x /entrypoint.sh /admin_install/* /admin_startup/* \
