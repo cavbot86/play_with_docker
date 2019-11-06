@@ -1,5 +1,6 @@
 #!/bin/bash
 set -e
+source /etc/profile
 source ${HOME}/.bashrc
 env
 mkdir -p ${WORKSPACE}/log
