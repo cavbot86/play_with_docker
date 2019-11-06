@@ -5,7 +5,6 @@ LABEL maintainer=cavbot@outlook.com
 
 ENV WORKSPACE=/home/c \
     APP_ROOT=/home/c/app \
-    TZ=Asia/Shanghai \
     PREPARE_SLEEP=5 \
     EMAIL="cavbot@outlook.com"
 
