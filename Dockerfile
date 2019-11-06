@@ -6,7 +6,7 @@ COPY rootfs/admin_install/init_permission.sh /admin_install/init_permission.sh
 COPY rootfs/etc/supervisor/conf.d/ /etc/supervisor/conf.d/
 COPY rootfs/entrypoint.sh /entrypoint.sh
 
-RUN chmod +x /entrypoint.sh /admin_install/init_supervisor.sh \
+RUN chmod +x /entrypoint.sh /admin_install/*.sh \
     && /admin_install/init_supervisor.sh 
 
 ENV CMD_USER=${SUDOER_USER} \
@@ -14,7 +14,7 @@ ENV CMD_USER=${SUDOER_USER} \
     HOME_INIT=${ADMIN_RUN}/home/${SUDOER_USER}
 RUN mkdir -p ${HOME_INIT} \
     && scp -r ${HOME}/ ${ADMIN_RUN}/home/ \
-    && 
+    && /admin_install/init_permission.sh 
 
 WORKDIR ${WORKSPACE}
 EXPOSE 22/tcp
