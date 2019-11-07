@@ -22,13 +22,16 @@ COPY rootfs/entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh /admin_install/* /admin_startup/* \
     && /admin_install/init_common.sh \
     && /admin_install/init_admin.sh \
-    && mkdir ${WORKSPACE} \
-    && chown -R ${SUDOER_USER}:${SUDOER_USER} ${WORKSPACE} 
+    && mkdir ${WORKSPACE} 
+
+
 ENV CMD_USER=${SUDOER_USER} \
     HOME=/home/${SUDOER_USER} \
     HOME_INIT=${ADMIN_RUN}/home/${SUDOER_USER}
+COPY rootfs/admin_install/init_permission.sh /admin_install/init_permission.sh
 RUN mkdir -p ${HOME_INIT} \
     && scp -r ${HOME}/ ${ADMIN_RUN}/home/ \
+    && chmod +x /admin_install/init_permission.sh \
     && /admin_install/init_permission.sh
 
 WORKDIR ${WORKSPACE}

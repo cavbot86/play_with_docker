@@ -1,7 +1,5 @@
 #!/bin/bash
 set -e
-source /etc/profile
-source ${HOME}/.bashrc
 
 if [[ ! -f "${ADMIN_RUN}/run_on_first_startup.log" ]]; then
     echo EXEC: /admin_startup/run_on_first_startup.sh
