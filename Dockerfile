@@ -23,7 +23,7 @@ ENV CMD_USER=${SUDOER_USER} \
 COPY rootfs/admin_install/init_permission.sh /admin_install/init_permission.sh
 RUN mkdir -p ${HOME_INIT} \
     && scp -r ${HOME}/ ${ADMIN_RUN}/home/ \
-    && chmod +x /admin_install/init_permission.sh \
+    && chmod +x /start_app.sh /prepare_app.sh /admin_install/init_permission.sh \
     && /admin_install/init_permission.sh
 
 EXPOSE 22/tcp
