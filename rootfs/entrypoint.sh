@@ -12,6 +12,12 @@ echo EXEC: /admin_startup/run_on_startup.sh
 
 echo start services ...
 echo "################################################################################################"
-/usr/bin/supervisord
-echo $@
-$@
+# exec /bin/tini -- /usr/sbin/sshd -D
+/usr/sbin/sshd -D &
+if [[ ${CMD_USER} == "root" ]]; then
+    echo "$@"
+    $@
+else
+    echo su ${CMD_USER} -c "$@"
+    su ${CMD_USER} -c "$@"
+fi
