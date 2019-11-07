@@ -27,3 +27,4 @@ mkdir -p /home/${SUDOER_USER}/.ssh
 touch /home/${SUDOER_USER}/.ssh/authorized_keys
 chmod 600 /home/${SUDOER_USER}/.ssh/authorized_keys
 echo "alias ll='ls -al'" >> /home/${SUDOER_USER}/.bashrc
+echo "alias ll='ls -al'" >> /etc/profile
