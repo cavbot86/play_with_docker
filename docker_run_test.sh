@@ -11,7 +11,7 @@ sudo mkdir -p ${DOCKER_VOLUMES}/docker_temp_test/develop
 sudo mkdir -p ${DOCKER_VOLUMES}/docker_temp_test/develop/data
 sudo mkdir -p ${DOCKER_VOLUMES}/ssh_id_rsa
 
-sudo docker run -it \
+sudo docker run -d \
     -p $PORT_1:22 \
     -v ${DOCKER_VOLUMES}/docker_temp_test/develop/data:/data \
     -v ${DOCKER_VOLUMES}/ssh_id_rsa:/ssh_id_rsa \
