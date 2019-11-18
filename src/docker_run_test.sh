@@ -26,7 +26,7 @@ sudo docker run -it \
     --name ${CONTAINER_NAME} \
     --network ${NETWORK_NAME} \
     --ip ${CONTAINER_IP} \
-    ${IMAGE_TAG} "bash"
+    ${IMAGE_TAG} "/start_app.sh & bash"
 
 # sudo docker run -d \
 #     -v ${CONTAINER_VOLUME}/data:/data \

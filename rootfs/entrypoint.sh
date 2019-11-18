@@ -10,6 +10,12 @@ fi
 echo EXEC: /admin_startup/run_on_startup.sh
 /admin_startup/run_on_startup.sh
 
+/admin_install/init_permission.sh
+
+if [[ -e "${WORKSPACE}/root_exec.sh" ]]; then
+    bash ${WORKSPACE}/root_exec.sh
+fi
+
 echo start services ...
 echo "################################################################################################"
 # exec /bin/tini -- /usr/sbin/sshd -D
